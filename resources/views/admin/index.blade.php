@@ -1,3 +1,7 @@
 @extends('layouts.admin')
 
-@yield('content')
+@section('content')
+
+<h1>Admin</h1>
+
+@endsection
