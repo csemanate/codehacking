@@ -55,14 +55,15 @@ class AdminUsersController extends Controller
             $input['password'] = bcrypt($request->password);
         }
 
+        //Checks if there is a file selected in photos
         if($file= $request->file('photo_id')){
 
+            //Creates the file name appending the time created
             $name = time() . $file->getClientOriginalName();
-
+            //Moves the file to the images folder and assigns the name
             $file->move('images', $name);
-
+            //Creates the record in the photos table
             $photo = Photo::create(['file'=>$name]);
-
             $input['photo_id'] = $photo->id;
 
         }
