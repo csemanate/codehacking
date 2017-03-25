@@ -30,6 +30,7 @@
             {!! Form::close() !!}
 
         </div>
+
     </div>
 
     <div class="row">

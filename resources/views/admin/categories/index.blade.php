@@ -2,6 +2,14 @@
 
 @section('content')
 
+    @if(Session::has('deleted_category'))
+        <p class="bg-danger">{{session('deleted_category')}}</p>
+    @elseif(Session::has('created_category'))
+        <p class="bg-success">{{session('created_category')}}</p>
+    @elseif(Session::has('updated_category'))
+        <p class="bg-success">{{session('updated_category')}}</p>
+    @endif
+
     <h1>Categories</h1>
 
     <div class="col-sm-6">
@@ -12,7 +20,7 @@
                 {!! Form::text('name', null, ['class'=>'form-control']) !!}
             </div>
             <div class="form-group">
-                {!! Form::submit('Create Category', ['class'=>'btn btn-primary']) !!}
+                {!! Form::submit('Create', ['class'=>'btn btn-primary col-sm-6']) !!}
             </div>
         {!! Form::close() !!}
 
@@ -35,7 +43,7 @@
                     @foreach($categories as $category)
                         <tr>
                             <td>{{$category->id}}</td>
-                            <td>{{$category->name}}</td>
+                            <td><a href="{{route('admin.categories.edit', $category->id)}}">{{$category->name}}</a></td>
                             <td>{{$category->created_at ? $category->created_at->diffForHumans() : 'No Date'}}</td>
                             <td>{{$category->updated_at ? $category->updated_at->diffForHumans() : 'No Date'}}</td>
                         </tr>
